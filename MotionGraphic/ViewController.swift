@@ -87,19 +87,16 @@ class ViewController: CanvasController {
     func animateRectangle() {
         let square = Rectangle(frame: Rect(0, 0, 40, 1))
         square.center = canvas.center
+        square.corner = Size(0, 0)
         square.strokeColor = Color(red: 238, green: 238, blue:238
             , alpha: 1.0)
         square.fillColor = Color(red: 238, green: 238, blue:238
             , alpha: 1.0)
         self.canvas.add(square)
         let move = ViewAnimation(duration: 1.0){
-            square.bounds = Rect(0, 0, 40, 250)
-            square.strokeColor = Color(red: 238, green: 238, blue:238
-                , alpha: 1.0)
-            square.fillColor = Color(red: 238, green: 238, blue:238
-                , alpha: 1.0)
-            square.center = self.canvas.center
+            square.frame = Rect(square.center, Size(square.width, 250))
         }
+        move.curve = .easeOut
         move.animate()
         
     }
